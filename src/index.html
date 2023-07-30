@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="icons.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PNGtoPDF</title>
+    <script src="pdf-lin.min.js" defer></script>
+    <script type="module" src="/main.js" defer></script>
+    <script src="test.js" defer></script>
+    <style>
+      .logo.vanilla:hover {
+        filter: drop-shadow(0 0 2em #ffe21c);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="topBtns">
+        <div id="pdfAllBtn" class="btn"><span>Save all as one PDF!</span></div>
+        <div id="clearAllBtn" class="btn"><span>Clear all Files</span></div>
+      </div>
+      <div id="imagePreview"></div>
+      <div id="noImagesScreen">
+        <div id="noImagesScreen_container">
+          <div id="noImagesScreen_opts">
+            <div id="uploadIcon"><i class="gg-software-upload"></i></div>
+            <div id="uploadText">Drag a <span class="blue">PNG</span> file(s), to start converting!</div>
+          </div>
+          </div>
+        <div id="fileTransfer">
+          <div id="fileTransfer_btn" class="btn"><span>Choose files<span></div><div id="fileTransfer_rest">or drop image on the screen</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

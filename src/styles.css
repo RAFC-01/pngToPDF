@@ -1,0 +1,163 @@
+body{
+  overflow-x: hidden;
+  background-color: #1d1d1d;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif ;
+}
+
+#imagePreview{
+  /* display: flex; */
+  gap: 15px;
+  margin: auto;
+  flex-wrap: wrap;
+  width: 95%;
+  justify-content: center;
+  display: none;
+  margin-top: 25px;
+}
+.image{
+  height: 150px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.name {
+  position: absolute;
+  pointer-events: none;
+  background-color: rgb(17, 132, 240);
+  width: 100%;
+  opacity: 0;
+  transition: 0.2s;
+}
+.image > img {
+  pointer-events: none;
+}
+.image:hover > .button{
+  opacity: 1;
+  transition: 0.2s;
+}
+.image:hover > .name {
+   opacity: 1;
+   transition: 0.2s;
+}
+.container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.button{
+  width: 100%;
+  height: 20px;
+  background-color: rgb(17, 132, 240);
+  pointer-events: none;
+  position: absolute;
+  opacity: 0;
+  bottom: 0px;
+  transition: 0.2s;
+}
+#pdfAllBtn{
+  display: none;
+  width: 300px;
+  height: 40px;
+  background-color: rgb(151, 62, 62);
+  color: #4d2323;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+#pdfAllBtn:hover{
+  color: black;
+  background-color: rgb(163, 70, 70);
+  transition: 0.2s;
+}
+#fileTransfer{
+  width: fit-content;
+  padding: 20px;
+  display: flex;
+  margin: auto;
+  background-color: #fdfdfd;
+  color: black;
+  align-items: center;
+  border-radius: 15px;
+  margin-top: 25px;
+}
+#fileTransfer_btn{
+  width: 200px;
+  height: 50px;
+  background-color: #2f323d;
+  margin-right: 10px;
+  border-radius: 8px;
+  color: rgb(165, 165, 165);
+}
+#fileTransfer_btn:hover{
+  color: white;
+  background-color: #404453;
+  cursor: pointer;
+}
+.btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn > span{
+  pointer-events: none;
+}
+#noImagesScreen{
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+  height: calc(100vh - 16px);
+}
+#noImagesScreen_container{
+  width: 100%;
+  padding-bottom: 22.125%;
+  background: #2f323d; 
+}
+#noImagesScreen_opts{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 22.125%;
+}
+#uploadIcon{
+  transform: scale(4);
+}
+#uploadText{
+  margin-top: 40px;
+  color: rgb(165, 165, 165);
+}
+.blue{
+  color: #6b6be0
+}
+#clearAllBtn{
+  display: none;
+  width: 150px;
+  height: 40px;
+  background-color: #1c5ba3;
+  border-radius: 8px;
+  margin-top: 20px;
+  margin-left: 25px;
+  transition: 0.2s;
+}
+#clearAllBtn:hover{
+  background-color: #2164b1;
+  transition: 0.2;
+  cursor: pointer;
+}
+#topBtns{
+  display: flex;
+}
