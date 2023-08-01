@@ -8,15 +8,32 @@
     <title>PNGtoPDF</title>
     <script src="pdf-lin.min.js" defer></script>
     <script type="module" src="/main.js" defer></script>
-    <script src="test.js" defer></script>
-    <style>
-      .logo.vanilla:hover {
-        filter: drop-shadow(0 0 2em #ffe21c);
-      }
-    </style>
+    <script src="func.js" defer></script>
   </head>
-
   <body>
+    <div id="saveWindowContainer">
+      <div id="saveLocationWindow">
+        <div id="dirConent">
+          <div id="currentDir">
+            <div id="currentDir_arrows">
+              <div id="currentDir_back"><i class="arrow left"></i></div>
+              <div id="currentDir_forward"><i class="arrow right"></i></div>
+            </div>
+            <div id="currentDir_text">
+              <span id="currentDir_text_content">C:/Users/Admin</span>
+            </div>
+          </div>
+          <div id="currentDir_files"></div>
+        </div>
+        <div id="saveLocationWindow_bottomSection">
+          <div class="currentDir_pdf_icon" id="pdfSaveIcon"><img src="assets/pdf-svgrepo-com.svg" width="100%" height="100%"/></div>
+          <div id="saveLocationWindow_fileName">
+            <input type="text" placeholder="File Name"/>
+          </div>
+          <div id="saveLocationWindow_saveBtn" class="btn"><span>Save<span></div>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div id="topBtns">
         <div id="pdfAllBtn" class="btn"><span>Save all as one PDF!</span></div>

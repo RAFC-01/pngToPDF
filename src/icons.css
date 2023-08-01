@@ -36,3 +36,150 @@
     left: 5px;
     bottom: 3px
 }
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+  
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  
+  .left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+  
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+  .file {
+    background:#eee;
+    background:-moz-linear-gradient(top, #ddd 0, #eee 15%, #fff 40%, #fff 70%, #eee 100%);
+    background:-webkit-linear-gradient(top, #ddd 0, #eee 15%, #fff 40%, #fff 70%, #eee 100%);
+    border:1px solid #ccc;
+    -moz-border-radius:3px 15px 3px 3px;
+    -webkit-border-radius:3px 15px 3px 3px;
+    border-radius:3px 15px 3px 3px;
+    -moz-box-shadow:inset rgba(255,255,255,0.8) 0 1px 1px;
+    -webkit-box-shadow:inset rgba(255,255,255,0.8) 0 1px 1px;
+    box-shadow:inset rgba(255,255,255,0.8) 0 1px 1px;
+    display: inline-block;
+    width: 20px;
+    height: 25px;
+    position:relative;
+    text-indent:-9999em;
+    margin-bottom: -8px;
+    margin-top: 12px;
+  }
+  .file:before {
+    content: '';
+    position: absolute;
+    right:0;
+    width: 10px;
+    height: 10px;
+    background:#ccc;
+    background:-moz-linear-gradient(45deg, #fff 0,  #eee 50%, #ccc 100%);
+    background:-webkit-linear-gradient(45deg, #fff 0,  #eee 50%, #ccc 100%);
+    box-shadow:rgba(0,0,0,0.05) -1px 1px 1px, inset white 0 0 1px;
+    border-bottom:1px solid #ccc;
+    border-left:1px solid #ccc;
+    -moz-border-radius:0 14px 0 0;
+    -webkit-border-radius:0 14px 0 0;
+    border-radius:0 10px 0 0;
+  }
+
+  .file:after {
+    content:"";
+    display:block;
+    position:absolute;
+    left:0;
+    top:0;
+    width: 40%;
+    margin: 10px 20% 0;
+    background:#ccc;
+    background:-moz-linear-gradient(top, #ccc 0, #ccc 20%, #fff 20%, #fff 40%, #ccc 40%, #ccc 60%, #fff 60%, #fff 80%, #ccc 80%, #ccc 100%);
+    background:-webkit-linear-gradient(top, #ccc 0, #ccc 20%, #fff 20%, #fff 40%, #ccc 40%, #ccc 60%, #fff 60%, #fff 80%, #ccc 80%, #ccc 100%);
+    height: 8px;
+  }
+
+
+  .folder {
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+    margin: auto;
+    position: relative;
+    background-color: #708090;
+    border-radius: 0 3px 3px 3px;
+    /*box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.59);*/
+  }
+
+  .folder:before {
+    content: '';
+    width: 50%;
+    height: 0.2em;
+    border-radius: 0 20px 0 0;
+    background-color: #708090;
+    position: absolute;
+    overflow: hidden;
+    top: -0.2em;
+    left: 0px;
+  }
+/* .pdf-icon{
+    font-size: 100%;
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    width: 6em;
+    height: 8.5em;
+    background-color: #eee;
+    background-image: url('https://i.imgur.com/lZ5SgDE.png');
+    background-repeat: no-repeat;
+    background-size: 85% auto;
+    background-position: center 2em;
+    border-radius: 1px 2em 1px 1px;
+    border: 1px solid #ddd;
+}
+.pdf-icon::after{
+    content: 'PDF';
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    padding: .2em 0 .1em;
+    color: white;
+    display: block;
+    position: absolute;
+    top: .7em;
+    left: -1.5em;
+    width: 3.4em;
+    height: auto;
+    background: #da2525;
+    border-radius: 2px;
+  } */
+  .pdf-icon::after{
+	content: url(pdf-icon.svg);
+    vertical-align: middle;
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .fa-file-pdf-o:before {
+    content: "\f1c1";
+  }

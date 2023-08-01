@@ -1,8 +1,10 @@
 const { appWindow } = window.__TAURI__.window;
+const { desktopDir } = window.__TAURI__.path;
 const { invoke } = window.__TAURI__.tauri;
 const fs = window.__TAURI__.fs;
 
-const startDirPath = 'C:/Users/Admin';
+const desktopPath = await desktopDir();
+const startDirPath = desktopPath;
 
 await appWindow.onFileDropEvent((event) => {
   if (event.payload.type === 'drop') {
@@ -58,16 +60,20 @@ await appWindow.onFileDropEvent((event) => {
  });
  await appWindow.setTitle('PNGtoPDF Converter!');
 
-async function getListOfFiles(dirPath) {
+async function getListOfFiles(dirPath, next) {
   try {
     const fileList = await window.__TAURI__.tauri.invoke('list_files_in_dir', { dirPath });
-    console.log(fileList); // This will log the list of files to the browser console
+    if (next) next(fileList);
   } catch (error) {
     console.error('Error fetching file list:', error);
+    if (next) next([]);
   }
 }
 
 // Call the function whenever you need to get the list of files
-getListOfFiles(startDirPath);
+getListOfFiles(startDirPath, (arr)=> {
+  let array = showOnlyFiles(arr, 'pdf');
+  console.log(array)
+});
 
-export {startDirPath}
+export {startDirPath, getListOfFiles}

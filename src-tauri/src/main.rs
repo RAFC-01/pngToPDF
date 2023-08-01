@@ -2,21 +2,36 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use std::fs;
 use tauri::WindowEvent;
+use serde_json::json;
+use serde_json::Value;
+
 
 #[tauri::command]
-fn save_pdf(pdf: Vec<u8>, name: String) {
-    let path = format!("C:/Users/Admin/Desktop/{}.pdf", name);
+fn save_pdf(pdf: Vec<u8>, path: String) {
+    let path = format!("{}.pdf", path);
     if let Err(e) = std::fs::write(&path, pdf) {
-        eprintln!("Error saving PDF file: {}", e);
+        eprintln!("Error saving to PATH: {}", e);
     }
 }
 
 #[tauri::command]
-fn list_files_in_dir(dir_path: &str) -> Vec<String> {
-    let file_list = fs::read_dir(dir_path)
-        .unwrap()
-        .map(|entry| entry.unwrap().file_name().to_string_lossy().to_string())
-        .collect();
+fn list_files_in_dir(dir_path: &str) -> Vec<Value> {
+    let mut file_list = Vec::new();
+
+    for entry in fs::read_dir(dir_path).unwrap() {
+        let entry = entry.unwrap();
+        let file_name = entry.file_name().to_string_lossy().to_string();
+        if !entry.file_type().unwrap().is_symlink() {
+            // Convert FileEntry struct to JSON value
+            let json_value = json!({
+                "name": file_name,
+                "isDir": entry.file_type().unwrap().is_dir()
+            });
+
+            file_list.push(json_value);
+        }
+    }
+
     file_list
 }
 
