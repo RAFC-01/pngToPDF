@@ -1,7 +1,10 @@
-# Tauri + Vanilla
+# PNG to PDF
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Javascript.
+App that allows you to convert png img to pdf file.
+Using Rust + Vanilla Js
 
-## Recommended IDE Setup
+(Fun project that helped me understand technologies that i wanted to use in my main project)
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+## How to use
+ - Drag a png file onto the program
+ - Click on image that you want to convert (or "Save all" for multiple files)
