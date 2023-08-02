@@ -7,10 +7,17 @@ use serde_json::Value;
 
 
 #[tauri::command]
-fn save_pdf(pdf: Vec<u8>, path: String) {
+fn save_pdf(pdf: Vec<u8>, path: String){
     let path = format!("{}.pdf", path);
     if let Err(e) = std::fs::write(&path, pdf) {
         eprintln!("Error saving to PATH: {}", e);
+    }
+}
+#[tauri::command]
+fn file_exist(path: String) -> bool{
+    match fs::metadata(path) {
+        Ok(_) => true,
+        Err(_) => false,
     }
 }
 
@@ -43,7 +50,7 @@ fn main() {
             std::thread::sleep(std::time::Duration::from_nanos(1));
         }
     })
-    .invoke_handler(tauri::generate_handler![list_files_in_dir, save_pdf])
+    .invoke_handler(tauri::generate_handler![list_files_in_dir, save_pdf, file_exist])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }

@@ -70,13 +70,54 @@ class SaveWindow{
             return;
         }
         let path = this.currentPath + name;
-        console.log(path);
-        downloadPDFfromImages(this.currentlySaving.files, path);
+        isFileAlready(path+ '.pdf', (bool)=> {
+            console.log(bool);
+            if (!bool){ // if file doesnt already exit
+                this.saveFiles(this.currentlySaving.files, path);
+                this.currentlySaving = {};
+                this.close();
+            }else{ // file exists
+                this.askForFileReplace(name);
+            }
+        })
+    }
+    askForFileReplace(name){
+        const popUp = document.getElementById('saveWindow_popupContainer');
+        const text = document.getElementById('saveWindow_popup_text');
+        popUp.style.display = 'flex';
+        popUp.dataset.name = name;
+        let filename = name.length > 23 ? 'YOUR PDF FILE' : `File "${name}.pdf"`;         
+        text.innerHTML = `
+            <div id="saveWindow_popup_fileName">${filename}</div> 
+            <div id="saveWindow_popup_text_content">Already exists do you want to replace it?</div>
+        ` 
+    }
+    closeReplaceAsk(){
+        const popUp = document.getElementById('saveWindow_popupContainer');
+        popUp.style.display = 'none';
+    }
+    fileReplaceRes(bool){
+        if (!this.currentlySaving || !this.currentlySaving.files || !this.currentPath || !bool){
+            this.closeReplaceAsk();
+            return;
+        }
+        const name = document.getElementById('saveWindow_popupContainer').dataset.name;
+        let path = this.currentPath + name;
+        this.saveFiles(this.currentlySaving.files, path);
+        
+    }
+    saveFiles(files, path){
+        downloadPDFfromImages(files, path);
         this.currentlySaving = {};
         this.close();
+        this.closeReplaceAsk();
     }
 }
-
+document.addEventListener('focus', (e)=> {
+    if (e.target.id == 'saveLocationWindow_fileName_input'){
+        e.target.select();
+    }
+})
 document.addEventListener('mousedown', (e)=> {
     if (e.target.className == 'image'){
         let img = e.target.children[1];
@@ -85,6 +126,10 @@ document.addEventListener('mousedown', (e)=> {
         let obj = [{src: src, name: name}];
         // downloadPDFfromImages(obj);
         saveWindow.load(obj, name);
+    }
+    if (e.target.classList.contains('saveWindow_popupBtn')){
+        let makeAction = e.target.dataset.action == "true";
+        saveWindow.fileReplaceRes(makeAction);
     }
     if (e.target.id == 'pdfAllBtn'){
         let srcList = [];
@@ -210,7 +255,7 @@ function showOnlyFiles(arr, filetype){
 let saveWindow = new SaveWindow();
 
 getModuleData(()=> {
-    // saveWindow.open();
+    saveWindow.open();
 });
 function sortFiles(records){ // seperates folders from files and sorts them
     let folders = [];
@@ -232,3 +277,16 @@ function charCount(char, string){
     }
     return count;
 }
+async function isFileAlready(path, next){
+    try {
+        console.log(path);
+        const fileExist = await window.__TAURI__.tauri.invoke('file_exist', { path });
+        if (next) next(fileExist);
+      } catch (error) {
+        console.error('Error fetching file list:', error);
+        if (next) next(false);
+      }
+}
+// display when file will be replaced
+// indicator that file has been saved
+// indicator that filename does not need to include .pdf

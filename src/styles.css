@@ -174,12 +174,14 @@ body{
   justify-content: center;
   align-items: center;
   z-index: 99;
+
 }
 #saveLocationWindow{
   width: 700px;
   height: 500px;
   background-color: #21232b;
   border-radius: 15px;
+  position: relative;
 }
 #dirConent{
   width: 94%;
@@ -297,4 +299,59 @@ body{
   background-color: #4d2323;
   margin-left: 35px;
   border-radius: 8px;
+}
+#saveWindow_popupContainer{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.733);
+}
+#saveWindow_popup{
+  width: 40%;
+  height: 150px;
+  background-color: #21232b;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+#saveWindow_btns{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  width: 100%;
+  height: 27%;
+  gap: 20px;
+  justify-content: center;
+}
+.saveWindow_popupBtn{
+  border-radius: 8px;
+  height: fit-content;
+  width: 50px;
+  text-transform: uppercase;
+  padding: 7px;
+}
+#saveWindow_popupBtn_cancel{
+  background-color: #a02121;
+}
+#saveWindow_popupBtn_save{
+  background-color: #2b912b;
+}
+#saveWindow_popup_fileName{
+  color: red;
+  text-align: center;
+}
+#saveWindow_popup_text{
+  width: 90%;
+  margin-top: 10px;
+}
+#saveWindow_popup_text_content{
+  text-align: center;
+  margin-top: 10px;
 }

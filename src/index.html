@@ -28,9 +28,19 @@
         <div id="saveLocationWindow_bottomSection">
           <div class="currentDir_pdf_icon" id="pdfSaveIcon"><img src="assets/pdf-svgrepo-com.svg" width="100%" height="100%"/></div>
           <div id="saveLocationWindow_fileName">
-            <input type="text" placeholder="File Name"/>
+            <input type="text" id="saveLocationWindow_fileName_input" placeholder="File Name"/>
           </div>
           <div id="saveLocationWindow_saveBtn" class="btn"><span>Save<span></div>
+        </div>
+        <div id="saveWindow_popupContainer">
+            <div id="saveWindow_popup">
+              <div id="saveWindow_popup_text">
+              </div>
+              <div id="saveWindow_btns">
+                <div data-action="false" class="btn saveWindow_popupBtn" id="saveWindow_popupBtn_cancel"><span>No<span></div>
+                <div data-action="true" class="btn saveWindow_popupBtn" id="saveWindow_popupBtn_save"><span>Yes</span></div>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -48,7 +58,7 @@
           </div>
           </div>
         <div id="fileTransfer">
-          <div id="fileTransfer_btn" class="btn"><span>Choose files<span></div><div id="fileTransfer_rest">or drop image on the screen</div>
+          <div id="fileTransfer_btn" class="btn"><span>Drop only<span></div><div id="fileTransfer_rest">or drop image on the screen</div>
         </div>
       </div>
     </div>
