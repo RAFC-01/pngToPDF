@@ -6,8 +6,9 @@ class SaveWindow{
     constructor(){
         this.pathHistory = [];
     }
-    load(files, name){
+    load(files, name, divs){
         this.currentlySaving = {files: files, name: name};
+        this.savingDivs = divs;
         console.log(this.currentlySaving);
         this.open(undefined, name);
     }
@@ -106,9 +107,17 @@ class SaveWindow{
         this.saveFiles(this.currentlySaving.files, path);
         
     }
+    markDivsAsSaved(divs){
+        for (let div of divs){
+            div.children[0].style.display = 'flex';
+        }
+        showRemoveAllSavedBtn();
+    }
     saveFiles(files, path){
+        this.markDivsAsSaved(this.savingDivs)
         downloadPDFfromImages(files, path);
         this.currentlySaving = {};
+        this.savingDivs = [];
         this.close();
         this.closeReplaceAsk();
     }
@@ -120,12 +129,12 @@ document.addEventListener('focus', (e)=> {
 })
 document.addEventListener('mousedown', (e)=> {
     if (e.target.className == 'image'){
-        let img = e.target.children[1];
+        let img = e.target.children[2];
         let src = img.src;
         let name = img.dataset.name;
         let obj = [{src: src, name: name}];
         // downloadPDFfromImages(obj);
-        saveWindow.load(obj, name);
+        saveWindow.load(obj, name, [e.target]);
     }
     if (e.target.classList.contains('saveWindow_popupBtn')){
         let makeAction = e.target.dataset.action == "true";
@@ -136,7 +145,8 @@ document.addEventListener('mousedown', (e)=> {
 
         const imgs = document.querySelectorAll('.image');
         for (let img of imgs){
-            let elem = img.children[1];
+            let elem = img.children[2];
+            console.log(elem)
             let obj = {
                 src: elem.src,
                 name: elem.dataset.name
@@ -145,7 +155,7 @@ document.addEventListener('mousedown', (e)=> {
         }
         // console.log(srcList)
         let name = 'multiplePDFS'
-        saveWindow.load(srcList, name);
+        saveWindow.load(srcList, name, imgs);
         // downloadPDFfromImages(srcList);
     }
     if (e.target.id == 'clearAllBtn'){
@@ -174,6 +184,9 @@ document.addEventListener('mousedown', (e)=> {
     if (e.target.id == 'saveLocationWindow_saveBtn'){
         let name = document.querySelector('#saveLocationWindow_fileName > input').value;
         saveWindow.save(name);
+    }
+    if (e.target.id == 'clearAllSavedBtn'){
+        removeAllSavedImgs();
     }
         
 })
@@ -255,7 +268,7 @@ function showOnlyFiles(arr, filetype){
 let saveWindow = new SaveWindow();
 
 getModuleData(()=> {
-    saveWindow.open();
+    // saveWindow.open();
 });
 function sortFiles(records){ // seperates folders from files and sorts them
     let folders = [];
@@ -277,6 +290,24 @@ function charCount(char, string){
     }
     return count;
 }
+function showRemoveAllSavedBtn(){
+    const div = document.getElementById('clearAllSavedBtn');
+    div.style.display = 'flex';
+}
+function hideRemoveAllSavedBtn(){
+    const div = document.getElementById('clearAllSavedBtn');
+    div.style.display = 'none';
+}
+function removeAllSavedImgs(){
+    const imgs = document.querySelectorAll('.image');
+    for (let img of imgs){
+        console.log(img.children[0].style.display)
+        if (img.children[0].style.display !== 'none' && img.children[0].style.display !== ''){
+            img.remove();
+        }
+    }
+    hideRemoveAllSavedBtn();
+}
 async function isFileAlready(path, next){
     try {
         console.log(path);
@@ -287,6 +318,5 @@ async function isFileAlready(path, next){
         if (next) next(false);
       }
 }
-// display when file will be replaced
 // indicator that file has been saved
 // indicator that filename does not need to include .pdf

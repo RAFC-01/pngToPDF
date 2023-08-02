@@ -71,6 +71,7 @@ body{
   color: #4d2323;
   margin: auto;
   margin-top: 20px;
+  margin-left: 25px;
   border-radius: 8px;
   align-items: center;
   justify-content: center;
@@ -162,6 +163,36 @@ body{
 }
 #topBtns{
   display: flex;
+}
+#image_savedStatus{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: #99991a;
+  color: black;
+  display: none;
+  padding: 5px 0 5px 0px;
+  justify-content: center;
+}
+#clearAllSavedBtn{
+  display: none;
+  width: 200px;
+  height: 40px;
+  background-color: #99991a;
+  color: black;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+#clearAllSavedBtn:hover{
+  cursor: pointer;
+  transition: 0.2s;
+  background-color: #bbbb20;
 }
 /* save file window  */
 #saveWindowContainer{

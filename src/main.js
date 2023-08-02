@@ -6,6 +6,8 @@ const fs = window.__TAURI__.fs;
 const desktopPath = await desktopDir();
 const startDirPath = desktopPath;
 
+await appWindow.show()
+
 await appWindow.onFileDropEvent((event) => {
   if (event.payload.type === 'drop') {
     const files = event.payload.paths;
@@ -32,6 +34,9 @@ await appWindow.onFileDropEvent((event) => {
 
 
           const nameDiv = document.createElement('div');
+          const savedStatus = document.createElement('div');
+          savedStatus.innerText = 'SAVED!';
+          savedStatus.id = 'image_savedStatus';
           nameDiv.className = 'name';
           nameDiv.innerText = name;
           const button = document.createElement('div');
@@ -43,7 +48,7 @@ await appWindow.onFileDropEvent((event) => {
           img.src = imageData;
           img.dataset.name = name;
           img.setAttribute('height', '100%');
-          div.append(nameDiv, img, button);
+          div.append(savedStatus, nameDiv, img, button);
           document.getElementById("imagePreview").appendChild(div);
           document.getElementById("imagePreview").style.display = 'flex';
           document.getElementById('noImagesScreen_container').style.display = 'none';
