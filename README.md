@@ -7,4 +7,4 @@ Using Rust + Vanilla Js
 
 ## How to use
  - Drag a png file onto the program
- - Click on image that you want to convert (or "Save all" for multiple files)
+ - Click on image that you want to convert (or click "Save all" button to convert multiple files)
